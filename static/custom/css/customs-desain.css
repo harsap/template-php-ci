@@ -1,3 +1,12 @@
 .navbar-pf-vertical {
-    background-color:#9c0f0f 
+    background-color:#9c0f0f ;
+}
+
+.login{
+    background-color:#9c0f0f ;  
+    color: #fff;
+}
+
+.inputmoney{
+    text-align: right;
 }

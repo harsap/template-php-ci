@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+$this->output->set_header("Pragma: no-cache");
 ?><!DOCTYPE html>
 <!--[if IE 9]><html lang="en-us" class="ie9 layout-pf layout-pf-fixed"><![endif]-->
 <!--[if gt IE 9]><!-->
@@ -34,6 +36,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?php echo base_url(); ?>static/vendor/datatables/media/js/jquery.dataTables.js"></script> 
         <script src="<?php echo base_url(); ?>static/vendor/patternfly/dist/js/patternfly.min.js"></script>  
         <script src="<?php echo base_url(); ?>static/vendor/matchHeight/dist/jquery.matchHeight-min.js"></script> 
+        <script src="<?php echo base_url(); ?>static/vendor/jquery-validation-1.15.1/dist/jquery.validate.js"></script>  
+        <script src="<?php echo base_url(); ?>static/vendor/jquery-validation-1.15.1/dist/additional-methods.js"></script>
+        <script src="<?php echo base_url(); ?>static/vendor/jquery-inputmask/dist/jquery.inputmask.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>static/vendor/numeric/autonumeric.js"></script>
+        <script src="<?php echo base_url(); ?>static/vendor/numeric/akunting.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('form').on('keyup keypress', function (e) {
+                    var code = e.keyCode || e.which;
+                    if (code == 13) {
+                        e.preventDefault();
+                        return false;
+                    }
+                });
+                var csrfdata = {};
+                csrfdata['<?php echo $this->security->get_csrf_token_name(); ?>'] = '<?php echo $this->security->get_csrf_hash(); ?>';
+                $.ajaxSetup({
+                    data: csrfdata
+                })
+            });
+            function get_csrf_token_name() {
+                return '<?php echo $this->security->get_csrf_token_name(); ?>';
+            }
+            function get_csrf_hash() {
+                return '<?php echo $this->security->get_csrf_hash(); ?>';
+            }
+            function getbasepath() {
+                return '<?php echo base_url(); ?>';
+            }
+
+        </script>       
     </head> 
     <body>
         <nav class="navbar navbar-pf-vertical">
@@ -64,16 +97,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="#">About</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span title="Username" class="fa pficon-user"></span>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <li><a href="#">Preferences</a></li>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
-                    </li>
+                    <?php if ($this->ion_auth->logged_in()) { ?>
+                        <?php $user = $this->ion_auth->user()->row(); ?>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span title="Username" class="fa pficon-user">&nbsp;<?php echo $user->username; ?></span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li><a href="#">Preferences</a></li>
+                                <li><a href="<?php echo base_url(); ?>index.php/auth/login">Logout</a></li>
+                            </ul>
+                        </li> 
+                    <?php } else { ?>
+                        <li><a href="<?php echo base_url(); ?>index.php/auth/login"  class="nav-item-iconic nav-item-iconic-new-window"><span title="Login" class="fa fa-sign-in"></span></a></li>
+                    <?php } ?>
                 </ul>
             </nav>
         </nav> <!--/.navbar-->
@@ -88,68 +126,62 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <span class="list-group-item-value">Dashboard</span>
                     </a>
                 </li>
-                <li class="list-group-item">
-                    <a>
-                        <span class="fa fa-shield" data-toggle="tooltip" title="Dolor"></span>
-                        <span class="list-group-item-value">Dolor</span>
 
-                    </a>
-                </li>
-                <li class="list-group-item active secondary-nav-item-pf" data-target="#ipsum-secondary">
-                    <a>
-                        <span class="fa fa-space-shuttle" data-toggle="tooltip" title="Ipsum"></span>
-                        <span class="list-group-item-value">Ipsum</span>
-                    </a>
+                <?php if ($this->ion_auth->logged_in()) { ?>
+                    <li class="list-group-item">
+                        <a>
+                            <span class="fa fa-shield" data-toggle="tooltip" title="Dolor"></span>
+                            <span class="list-group-item-value">Dolor</span>
 
-                    <div id="-secondary" class="nav-pf-secondary-nav">
-                        <div class="nav-item-pf-header">
-                            <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
-                            <span>Ipsum</span>
-                        </div>
-                        <ul class="list-group">
-                            <li class="list-group-item active " data-target="#ipsum-intellegam-tertiary">
-                                <a>
-                                    <span class="list-group-item-value">Intellegam</span>
-                                </a>
+                        </a>
+                    </li>
 
-                            </li>
-                            <li class="list-group-item " data-target="#ipsum-copiosae-tertiary">
-                                <a>
-                                    <span class="list-group-item-value">Copiosae</span>
-                                </a>
+                    <li class="list-group-item active secondary-nav-item-pf" data-target="#ipsum-secondary">
+                        <a>
+                            <span class="fa fa-space-shuttle" data-toggle="tooltip" title="Ipsum"></span>
+                            <span class="list-group-item-value">Ipsum</span>
+                        </a>
 
-                            </li>
-                            <li class="list-group-item " data-target="#ipsum-patrioque-tertiary">
-                                <a>
-                                    <span class="list-group-item-value">Patrioque</span>
-                                </a>
+                        <div id="-secondary" class="nav-pf-secondary-nav">
+                            <div class="nav-item-pf-header">
+                                <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
+                                <span>Ipsum</span>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item active " data-target="#ipsum-intellegam-tertiary">
+                                    <a>
+                                        <span class="list-group-item-value">Intellegam</span>
+                                    </a>
 
-                            </li>
+                                </li>
+                                <li class="list-group-item " data-target="#ipsum-copiosae-tertiary">
+                                    <a>
+                                        <span class="list-group-item-value">Copiosae</span>
+                                    </a>
 
-                        </ul>
-                    </div> 
-                </li> 
-                <li class="list-group-item">
-                    <a>
-                        <span class="fa fa-gamepad" data-toggle="tooltip" title="Lorem"></span>
-                        <span class="list-group-item-value">Lorem</span>
-                    </a>
-                </li>
+                                </li>
+                                <li class="list-group-item " data-target="#ipsum-patrioque-tertiary">
+                                    <a>
+                                        <span class="list-group-item-value">Patrioque</span>
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                        </div> 
+                    </li> 
+                    <li class="list-group-item">
+                        <a>
+                            <span class="fa fa-gamepad" data-toggle="tooltip" title="Lorem"></span>
+                            <span class="list-group-item-value">Lorem</span>
+                        </a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
         <div class="container-fluid container-cards-pf container-pf-nav-pf-vertical  ">
             <?php echo $contents; ?> 
-        </div>
-        <script>
-            $(document).ready(function () {
-                $(".row-cards-pf > [class*='col'] > .card-pf .card-pf-title").matchHeight();
-                $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-body").matchHeight();
-                $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-footer").matchHeight();
-                $(".row-cards-pf > [class*='col'] > .card-pf").matchHeight();
-
-                // Initialize the vertical navigation
-                $().setupVerticalNavigation(true);
-            });
-        </script>
+        </div> 
+        <script type="text/javascript" src="<?php echo base_url(); ?>static/appjs/globalapp.js"></script>  
     </body>
 </html>

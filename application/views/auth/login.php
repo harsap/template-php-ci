@@ -26,15 +26,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?php echo base_url(); ?>static/vendor/bootstrap/dist/js/bootstrap.min.js"></script> 
         <script src="<?php echo base_url(); ?>static/vendor/patternfly/dist/js/patternfly.min.js"></script>  
     </head> 
-    <body>
+    <body class="login">
         <span id="badge">
-            <img src="<?php echo base_url(); ?>static/vendor/patternfly/dist/img/logo.svg" alt="PatternFly logo" />
+            <img src="<?php echo base_url(); ?>static/vendor/patternfly/dist/img/logo.svg" alt="Open data logo" />
         </span>
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div id="brand">
-                        <img src="<?php echo base_url(); ?>static/vendor/patternfly/dist/img/brand.svg" alt="PatternFly Enterprise Application">
+                        <img src="<?php echo base_url(); ?>static/vendor/patternfly/dist/img/brand.svg" alt="Opendata Enterprise Application">
                     </div><!--/#brand-->
                 </div><!--/.col-*-->
                 <div class="col-sm-12 col-md-12 col-lg-12 login">
@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-xs-8 col-sm-offset-2 col-sm-6 col-md-offset-2 col-md-6">
                             <div class="checkbox">
                                 <label>
-                                    <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"'); ?> <?php echo lang('login_remember_label', 'remember'); ?>
+                                    <?php /* echo form_checkbox('remember', '1', FALSE, 'id="remember"'); ?> <?php echo lang('login_remember_label', 'remember'); */ ?>
                                 </label>
                             </div> 
                         </div>

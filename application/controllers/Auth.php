@@ -89,6 +89,7 @@ class Auth extends CI_Controller {
         $logout = $this->ion_auth->logout();
 
         // redirect them to the login page
+        $this->session->sess_destroy(); 
         $this->session->set_flashdata('message', $this->ion_auth->messages());
         redirect('auth/login', 'refresh');
     }
@@ -688,7 +689,6 @@ class Auth extends CI_Controller {
     }
 
     public function _render_page($view, $data = null, $returnhtml = false) {//I think this makes more sense
-
         $this->viewdata = (empty($data)) ? $this->data : $data;
 
         $view_html = $this->load->view($view, $this->viewdata, $returnhtml);
