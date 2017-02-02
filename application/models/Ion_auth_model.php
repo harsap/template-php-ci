@@ -1298,7 +1298,7 @@ class Ion_auth_model extends CI_Model {
 
     public function get_users_info($id = FALSE) {
 
-        $id || $id = $this->session->userdata('user_id'); 
+        $id || $id = $this->session->userdata('user_id');
         return $this->db->select("*")
                         ->where($this->tables['users'] . '.id', $id)
                         ->get($this->tables['users'])->row();
@@ -2042,6 +2042,47 @@ class Ion_auth_model extends CI_Model {
     protected function _prepare_ip($ip_address) {
         // just return the string IP address now for better compatibility
         return $ip_address;
+    }
+
+    //---------------custom user------------
+    public function getAllUser($username = NULL, $limit = 10, $offset = 0, $orderby = null, $jenisorder = 'ASC') {
+        $sql = " SELECT id
+                    ,ip_address
+                    ,username
+                    ,password
+                    ,salt
+                    ,email
+                    ,activation_code
+                    ,forgotten_password_code
+                    ,forgotten_password_time
+                    ,remember_code
+                    ,created_on
+                    ,last_login
+                    ,active
+                    ,first_name
+                    ,last_name
+                    ,company
+                    ,phone
+            FROM users
+                        WHERE 1=1    ";
+        if (isset($username) && !empty($username)) {
+            $sql .= " and  username ilike '%'||$username||'%' ";
+        }
+        if(isset($orderby) && !empty($orderby)  &&  isset($jenisorder) && !empty($jenisorder)){
+           $sql .= "  order by $orderby   $jenisorder    ";
+        }
+        $sql .= "       limit   $limit   offset   $offset      ";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function getBanyakUser($username = NULL) {
+        $sql = " SELECT count(id) as banyak   FROM users   WHERE 1=1      ";
+        if (isset($username) && !empty($username)) {
+            $sql .= " and  username ilike '%'||$username||'%' ";
+        }
+        $query = $this->db->query($sql);
+        return $query->row()->banyak;
     }
 
 }

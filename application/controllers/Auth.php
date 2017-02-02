@@ -13,6 +13,7 @@ class Auth extends CI_Controller {
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
         $this->lang->load('auth');
+        $this->load->model('Ion_auth_model', 'ion_model');
     }
 
     // redirect if needed, otherwise display the user list
@@ -89,7 +90,7 @@ class Auth extends CI_Controller {
         $logout = $this->ion_auth->logout();
 
         // redirect them to the login page
-        $this->session->sess_destroy(); 
+        $this->session->sess_destroy();
         $this->session->set_flashdata('message', $this->ion_auth->messages());
         redirect('auth/login', 'refresh');
     }
@@ -695,6 +696,34 @@ class Auth extends CI_Controller {
 
         if ($returnhtml)
             return $view_html; //This will return html on 3rd argument being true
+    }
+
+    public function listuserbynamejson() {
+        $colorder = $this->input->post('iSortCol_0');
+        $offset = $this->input->post('iDisplayStart');
+        $limit = $this->input->post('iDisplayLength');
+        $sortdir = $this->input->post('sSortDir_0');
+        $name = $this->input->post('username');
+        $arr = array();
+        $banyak = $this->ion_model->getBanyakUser($name);
+        $arr["sEcho"] = intval($this->input->post('sEcho'));
+        $arr["iTotalRecords"] = $banyak;
+        $arr["iTotalDisplayRecords"] = $banyak;
+        $arr["aaData"] = $this->ion_model->getAllUser($name, $limit, $offset, $colorder, $sortdir);
+        echo json_encode($arr);
+    }
+
+    public function indexuser() {
+
+        if (!$this->ion_auth->logged_in()) {
+            redirect('auth/login', 'refresh');
+        } elseif (!$this->ion_auth->is_admin()) {
+            return show_error('You must be an administrator to view this page.');
+        } else {
+            $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+            $this->template->load('template', 'auth/listusers');
+            //$this->_render_page('auth/listusers', $this->data);
+        }
     }
 
 }

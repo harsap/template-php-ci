@@ -470,9 +470,9 @@ class Ion_auth {
     }
 
     public function is_sudah_login( ) {
-        if (!$this->ion_auth->logged_in()) {
-            redirect('auth/login');
-        }
+       if (!$this->ion_auth->logged_in()) { 
+            redirect('auth/login', 'refresh');
+        } 
     }
 
 }

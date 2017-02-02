@@ -180,7 +180,9 @@ $this->output->set_header("Pragma: no-cache");
             </ul>
         </div>
         <div class="container-fluid container-cards-pf container-pf-nav-pf-vertical  ">
-            <?php echo $contents; ?> 
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11">  <?php echo $contents; ?> </div>
+          
         </div> 
         <script type="text/javascript" src="<?php echo base_url(); ?>static/appjs/globalapp.js"></script>  
     </body>
