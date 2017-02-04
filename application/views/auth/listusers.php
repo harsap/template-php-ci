@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?> 
- <link rel="stylesheet" href="<?php echo base_url(); ?>static/vendor/datatables/media/css/dataTables.bootstrap.min.css">  
+ 
   <script src="<?php echo base_url(); ?>static/vendor/datatables/media/js/dataTables.bootstrap.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>static/appjs/auth/listpengguna.js"></script> 
 <ul class="breadcrumb">

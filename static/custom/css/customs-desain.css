@@ -10,3 +10,15 @@
 .inputmoney{
     text-align: right;
 }
+th{
+    background-color: #9c0f0f;
+    text-align: center;
+    color: #fff;
+
+}
+.sorting_asc{
+    background-color: #fff;
+    text-align: center; 
+    color: #002166;
+}
+ 

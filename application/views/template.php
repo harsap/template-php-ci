@@ -23,6 +23,7 @@ $this->output->set_header("Pragma: no-cache");
         <link rel="apple-touch-icon-precomposed" sizes="57x57" href="<?php echo base_url(); ?>static/vendor/patternfly/dist/img/apple-touch-icon-precomposed-57.png">
         <link rel="stylesheet" href="<?php echo base_url(); ?>static/vendor/patternfly/dist/css/patternfly.css"> 
         <link rel="stylesheet" href="<?php echo base_url(); ?>static/vendor/patternfly/dist/css/patternfly-additions.min.css"> 
+        <link rel="stylesheet" href="<?php echo base_url(); ?>static/vendor/datatables/media/css/dataTables.bootstrap.min.css">  
         <link rel="stylesheet" href="<?php echo base_url(); ?>static/custom/css/customs-desain.css"> 
         <script src="<?php echo base_url(); ?>static/vendor/jquery/dist/jquery.min.js"></script>
         <script src="<?php echo base_url(); ?>static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>

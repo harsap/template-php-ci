@@ -9,13 +9,7 @@ function grid() {
             "language": {
                 "lengthMenu": "Menampilkan _MENU_ data per halaman",
                 "info": "Halaman _PAGE_ dari _PAGES_",
-                "infoEmpty": "Data tidak tersedia",
-                "paginate": {
-                    "previous": "<span class='i fa fa-angle-left'></span>",
-                    "next": "<span class='i fa fa-angle-right'></span>",
-                    "first": "<span class='i fa fa-angle-double-left'></span>",
-                    "last": "<span class='i fa fa-angle-double-right'></span>"
-                }
+                "infoEmpty": "Data tidak tersedia" 
             },
             "bPaginate": true,
             "pagingType": "full_numbers",
@@ -87,7 +81,7 @@ function grid() {
             ]
         });
 
-        var top = "<a  href='" + getbasepath() + "/excelaction/newexcel' class='btn btn-default btn-success' style='float: right'>Tambah Data</a>"
+        var top = "<a  href='" + getbasepath() + "index.php/auth/create_user' class='btn btn-primary' style='float: right'>Tambah Data</a>"
         $("div.top").html(top);
 
 
