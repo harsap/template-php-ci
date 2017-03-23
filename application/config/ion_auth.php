@@ -27,10 +27,10 @@
 | -------------------------------------------------------------------------
 | Database table names.
 */
-$config['tables']['users']           = 'users';
-$config['tables']['groups']          = 'groups';
-$config['tables']['users_groups']    = 'users_groups';
-$config['tables']['login_attempts']  = 'login_attempts';
+$config['tables']['users']           = 'USERS';
+$config['tables']['groups']          = 'GROUPS';
+$config['tables']['users_groups']    = 'USERS_GROUPS';
+$config['tables']['login_attempts']  = 'LOGIN_ATTEMPTS';
 
 /*
  | Users table column and Group table column you want to join WITH.
@@ -38,8 +38,8 @@ $config['tables']['login_attempts']  = 'login_attempts';
  | Joins from users.id
  | Joins from groups.id
  */
-$config['join']['users']  = 'user_id';
-$config['join']['groups'] = 'group_id';
+$config['join']['users']  = 'USER_ID';
+$config['join']['groups'] = 'GROUP_ID';
 
 /*
  | -------------------------------------------------------------------------
@@ -82,11 +82,11 @@ $config['salt_prefix']    = version_compare(PHP_VERSION, '5.3.7', '<') ? '$2a$' 
  | The controller should check this function and act
  | appropriately. If this variable set to 0, there is no maximum.
  */
-$config['site_title']                 = "Open Data";       // Site Title, example.com
+$config['site_title']                 = "Inventik";       // Site Title, example.com
 $config['admin_email']                = "admin@example.com"; // Admin Email, admin@example.com
 $config['default_group']              = 'members';           // Default group, use name
 $config['admin_group']                = 'admin';             // Default administrators group, use name
-$config['identity']                   = 'username';             // You can use any unique column in your table as identity column. The values in this column, alongside password, will be used for login purposes
+$config['identity']                   = 'USERNAME';             // You can use any unique column in your table as identity column. The values in this column, alongside password, will be used for login purposes
 $config['min_password_length']        = 8;                   // Minimum Required Length of Password
 $config['max_password_length']        = 20;                  // Maximum Allowed Length of Password
 $config['email_activation']           = FALSE;               // Email Activation for registration

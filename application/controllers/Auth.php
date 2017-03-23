@@ -14,12 +14,13 @@ class Auth extends CI_Controller {
 
         $this->lang->load('auth');
         $this->load->model('Ion_auth_model', 'ion_model');
+        // $this->output->enable_profiler(TRUE);
     }
 
     // redirect if needed, otherwise display the user list
     public function index() {
-
-        if (!$this->ion_auth->logged_in()) {
+       $this->indexuser();
+      /*  if (!$this->ion_auth->logged_in()) {
             // redirect them to the login page
             redirect('auth/login', 'refresh');
         } elseif (!$this->ion_auth->is_admin()) { // remove this elseif if you want to enable this for non-admins
@@ -32,11 +33,11 @@ class Auth extends CI_Controller {
             //list the users
             $this->data['users'] = $this->ion_auth->users()->result();
             foreach ($this->data['users'] as $k => $user) {
-                $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+                $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->ID)->result();
             }
 
             $this->_render_page('auth/index', $this->data);
-        }
+        }*/
     }
 
     // log the user in
@@ -374,10 +375,10 @@ class Auth extends CI_Controller {
             $password = $this->input->post('password');
 
             $additional_data = array(
-                'first_name' => $this->input->post('first_name'),
-                'last_name' => $this->input->post('last_name'),
-                'company' => $this->input->post('company'),
-                'phone' => $this->input->post('phone'),
+                'FIRST_NAME' => $this->input->post('first_name'),
+                'LAST_NAME' => $this->input->post('last_name'),
+                'COMPANY' => $this->input->post('company'),
+                'PHONE' => $this->input->post('phone'),
             );
         }
         if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data)) {

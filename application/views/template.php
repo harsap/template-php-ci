@@ -102,7 +102,7 @@ $this->output->set_header("Pragma: no-cache");
                         <?php $user = $this->ion_auth->user()->row(); ?>
                         <li class="dropdown">
                             <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span title="Username" class="fa pficon-user">&nbsp;<?php echo $user->username; ?></span>
+                                <span title="Username" class="fa pficon-user">&nbsp;<?php echo $user->USERNAME; ?></span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">

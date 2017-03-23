@@ -63,21 +63,21 @@ function grid() {
                 var length = info.length;
                 var index = (page * length + (iDisplayIndex + 1));
                 $('td:eq(0)', nRow).html(index);
-                var edit = "<a  href='" + getbasepath() + "/apiadmin/edit/" + aData['id'] + "'    ><i class='fa fa-edit'></i></a>"
+                var edit = "<a  href='" + getbasepath() + "/apiadmin/edit/" + aData['ID'] + "'    ><i class='fa fa-edit'></i></a>"
                 $('td:eq(5)', nRow).html(edit);
 
-                var hapus = "<i  onclick='deleteData(" + aData['id'] + ")'  class='fa fa-remove'></i>";
+                var hapus = "<i  onclick='deleteData(" + aData['ID'] + ")'  class='fa fa-remove'></i>";
                 $('td:eq(6)', nRow).html(hapus);
                 return nRow;
             },
             "aoColumns": [
-                {"mDataProp": "id", "bSortable": false, sClass: " text-center"},
-                {"mDataProp": "username", "bSortable": true, sDefaultContent: "-"},
-                {"mDataProp": "email", "bSortable": false},
-                {"mDataProp": "first_name", "bSortable": false},
-                {"mDataProp": "last_name", "bSortable": false},
-                {"mDataProp": "id", "bSortable": false, sClass: " text-center"},
-                {"mDataProp": "id", "bSortable": false, sClass: " text-center"}
+                {"mDataProp": "ID", "bSortable": false, sClass: " text-center"},
+                {"mDataProp": "USERNAME", "bSortable": true, sDefaultContent: "-"},
+                {"mDataProp": "EMAIL", "bSortable": false},
+                {"mDataProp": "FIRST_NAME", "bSortable": false},
+                {"mDataProp": "LAST_NAME", "bSortable": false},
+                {"mDataProp": "ID", "bSortable": false, sClass: " text-center"},
+                {"mDataProp": "ID", "bSortable": false, sClass: " text-center"}
             ]
         });
 
